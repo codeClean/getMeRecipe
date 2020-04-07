@@ -1,0 +1,32 @@
+
+
+<div *ngIf="type == 'alert'" class="backdrop" (click)="onClose()"></div>
+   <div class="modal-dialog modal-confirm" *ngIf="type == 'alert'">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="icon-box">
+          <i class="material-icons" >&#xE5CD;</i>
+        </div>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+          (click)="onClose()"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Ooops!</h4>
+        <p>{{ message }}</p>
+        <button class="btn btn-success" data-dismiss="modal" (click)="onClose()" >
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="type == 'notify'" class="toastNotify">{{message}}</div>
+  
+  

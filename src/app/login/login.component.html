@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col col-xs-12">
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div> 
+    <app-alert-modal [type] = "'alert'" [message] = "error" *ngIf="error" (close)="onHandleClose()" ></app-alert-modal>
+
+    <mat-card *ngIf="!isLoading && !error"> 
+                <!-- <div *ngIf="error" (message)="message" class="alert alert-danger">
+                    <p>{{error}}</p>
+                </div> -->
+             
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form #login="ngForm" (ngSubmit)="submit(login)">
+          <p>
+            <mat-form-field>
+              <input
+                class="form-control"
+                type="text"
+                id="email"
+                matInput
+                placeholder="E-mail"
+                name="email"
+                required
+                email
+                ngModel
+                #email="ngModel"
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input
+                class="form-control"
+                type="password"
+                matInput
+                placeholder="Password"
+                id="password"
+                name="password"
+                required
+                minlength="6"
+                ngModel
+                #password="ngModel"
+              />
+            </mat-form-field>
+          </p>
+          <p *ngIf="signingUp">
+            <mat-form-field>
+              <input
+                type="password"
+                matInput
+                placeholder="Confirm Password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+                minlength="6"
+                ngModel
+                class="form-control"
+                #confirmPassword="ngModel"
+              />
+            </mat-form-field>
+          </p>
+          <p
+            *ngIf="
+              !email.valid &&
+              email.touched &&
+              (!password.touched || password.valid)
+            "
+            class="error"
+          >
+            {{ errorUsername }}
+          </p>
+          <p
+            *ngIf="
+              !password.valid &&
+              password.touched &&
+              (!email.touched || email.valid)
+            "
+            class="error"
+          >
+            {{ errorPassword }}
+          </p>
+          <p
+            *ngIf="
+              !password.valid &&
+              !email.valid &&
+              password.touched &&
+              email.touched
+            "
+            class="error"
+          >
+            {{ errorMessage }}
+          </p>
+          <p *ngIf="!passwordMatch" class="error">
+            {{ errorConfirmation }}
+          </p>
+
+          <p class="button">
+            <button
+              class="button"
+              [disabled]="!login.valid"
+              type="submit"
+              mat-button
+            >
+              Login
+            </button>
+            <button
+              class="button"
+              [disabled]="signingUp"
+              (click)="signUp()"
+              type="button"
+              mat-button
+            >
+              Sign Up
+            </button>
+          </p>
+          <p *ngIf="signingUp">
+            <a class="pull-right" (click)="switchToLogin()">already has an account</a>
+          </p>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

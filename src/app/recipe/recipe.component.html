@@ -1,0 +1,17 @@
+<div class="row">
+  <app-alert-modal
+    [type]="'notify'"
+    [message]="notifyMessage"
+    *ngIf="notify"
+  ></app-alert-modal>
+  <div class="col-md-5">
+    <app-recipe-list></app-recipe-list>
+  </div>
+  <div class="col-md-7">
+    <!--  <app-recipe-detail *ngIf="selectedRecipe" else noselection  [recipeWasSelected] = "selectedRecipe"></app-recipe-detail>
+    <ng-template #noselection>
+        <p>please select some recipe</p>
+    </ng-template> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

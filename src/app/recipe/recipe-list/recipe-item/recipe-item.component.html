@@ -1,0 +1,13 @@
+<!-- <a href="#" class="list-group-item clearfix" *ngFor="let item of recipes"> 
+ -->  
+ <a  class="list-group-item clearfix" [routerLink]="[inputIndex]"  routerLinkActive="active" >
+   <div class="pull-left">
+      <h4 class="list-group-item-heading">
+        {{ getRecipe.name }}
+      </h4>
+      <p class="list-group-item-text"> {{getRecipe.description}}</p>
+    </div> 
+    <span class="pull-right">
+      <img src="{{ getRecipe.imagePath }}" alt="{{getRecipe.name}}" style="max-height : 50px" class="img-responsive" /> 
+    </span>
+ </a>

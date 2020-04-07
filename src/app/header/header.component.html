@@ -1,0 +1,35 @@
+<div class="navnar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">Recipe Book</a>
+        </div>
+
+        <div class="navbar-default">
+            <ul class="nav navbar-nav">
+               <!--  <li><a href="#" (click)='onSelect("recipe")'>Recipes</a></li>
+                <li><a href="#" (click)='onSelect("shopping")'>Shopping</a></li>  -->
+                <li *ngIf="isLoggedIn" routerLinkActive="active"><a [routerLink]="['/recipe']"   >Recipes</a></li>
+                <li routerLinkActive="active"><a  routerLink='/shopping'  >Shopping</a></li>
+                <li *ngIf="!isLoggedIn" routerLinkActive="active"><a  routerLink='/login'  >log in</a></li> 
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="isLoggedIn" >
+                    <a style="cursor: pointer" (click) = "onAccount()">Hello {{userEmail}} </a> </li>
+               
+                <li *ngIf="isLoggedIn">
+                    <a style="cursor: pointer" (click)="onLogout()">Logout </a>
+                </li>
+                 <li *ngIf="isLoggedIn" class="dropdown" appDropdown>
+                    <a style="cursor: pointer" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                    <li><a (click)="saveRecipe()" style="cursor: pointer">Save Data</a></li>
+                    <li><a (click)="fetchRecipe()" style="cursor: pointer">Fetch Data</a></li>
+                </ul>
+                </li>
+            </ul>
+        </div> 
+    </div>
+</div>
+<app-alert-modal [type] = "'notify'" [message] = "notifyMessage" *ngIf="notify" ></app-alert-modal>
+<router-outlet></router-outlet>
+ 
